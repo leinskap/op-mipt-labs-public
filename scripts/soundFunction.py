@@ -13,7 +13,7 @@ def speedOfSound_experiment(data_0, data_1): #'rcgthbvtynfkmyfz crjhjcnm
     max_ob1 = max(data_1)
     max_ind1 = data_1.index(max_ob1)
     #print(max_ind0 , max_ind1)
-    t = (abs((max_ind1 - max_ind0))/SamplingRate)
+    t = (abs((max_ind1 - max_ind0))/SamplingRate)+0.000155
 
     return (L / t)
 
@@ -43,20 +43,20 @@ def grafics(x, y, a):
 
     fig, ax = plt.subplots()
 
-    ax.plot(x, y, label="Аналитическая зависимость",
+    ax.plot(x, y, label="Теор зависимость",
             marker="", linestyle="-",
-            color='r', linewidth=1)
+            color='green', linewidth=1)
 
     array_a_get = []
 
-    ax.plot(1.7, a, label="Значение в воздухе: 378.9 [м/с],  [%]",
-            marker="*", linestyle="",
-            color='green', linewidth=1)
+    ax.plot(1.7, a, label=" 370.5 [м/с], 1.7 [%]",
+            marker="o", linestyle="",
+            color='blue', linewidth=1)
 
     ax.grid(which = "major", linewidth = 1)
     ax.grid(which = "minor", linewidth = 0.2)
     ax.minorticks_on()
-    plt.text(0, 358, 'Влажность составляет 41,9 %\nТемпература составляет 25,3 по Цельсии', 
+    plt.text(0, 358, 'Влажность 41,9 %\nТемпература  25,3 по Цельсии', 
              bbox={"facecolor": "white",
                    "edgecolor": "black"}, size=7)
 
@@ -85,7 +85,7 @@ with open ("data_1_air2.txt", 'r') as file:
         data_1_air.append(f.split()[0])
 
 a_air = speedOfSound_experiment(data_0_air[500:], data_1_air[500:])
-print('Скорость звука в равна ', a_air, 'м/с')
+print('Скорость звука ', a_air, 'м/с')
 
 array_a, array_x = [], []
 array_a, array_x = speedOfSound_theory(temp, fi)
