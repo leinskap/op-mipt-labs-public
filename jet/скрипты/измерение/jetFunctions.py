@@ -19,6 +19,8 @@ import RPi.GPIO as GPIO
 # raspi-gpio get
 ########################################
 
+
+# инициализация модуля SPI
 spi = spidev.SpiDev()
 
 def initSpiAdc():
@@ -39,6 +41,7 @@ def getAdc():
 #   Setup and use GPIO for step motor
 ########################################
 
+# номера используемых GPIO пинов
 directionPin = 27
 enablePin = 22
 stepPin = 17

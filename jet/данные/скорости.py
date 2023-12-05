@@ -31,26 +31,26 @@ for i in range(99):
     q00 += 0.5*((abs(x[i]*0.001)*v00[i] + abs(x[i+1]*0.001)*v00[i+1])*(abs(abs(x[i+1]*0.001)-abs(x[i]*0.001))))
 q00 = 2*math.pi*q00*rho
 
-
-# 01 mm ----------------------------------------------------------------------------------------------------------------------------------------------------------
-with open('10 mm.txt', 'r') as data10:
-    p10 = [float(x)*pk+p0 for x in data10.read().split('\n')]
-v10 = [(rho*pressure)**0.5 for pressure in p10]
-for i in range(100):
-    if p10[i] < 0:
-        p10[i] = 0
-
-#скорости
-v10 = [(rho*pressure)**0.5 for pressure in p10]
-
-#расход 10
-q10 = 0
-for i in range(99):
-    q10 += 0.5*((abs(x[i]*0.001)*v10[i] + abs(x[i+1]*0.001)*v10[i+1])*(abs(abs(x[i+1]*0.001)-abs(x[i]*0.001))))
-q10 = 2*math.pi*q10*rho
-
-
-
+#
+# # 01 mm ----------------------------------------------------------------------------------------------------------------------------------------------------------
+# with open('10 mm.txt', 'r') as data10:
+#     p10 = [float(x)*pk+p0 for x in data10.read().split('\n')]
+# v10 = [(rho*pressure)**0.5 for pressure in p10]
+# for i in range(100):
+#     if p10[i] < 0:
+#         p10[i] = 0
+#
+# #скорости
+# v10 = [(rho*pressure)**0.5 for pressure in p10]
+#
+# #расход 10
+# q10 = 0
+# for i in range(99):
+#     q10 += 0.5*((abs(x[i]*0.001)*v10[i] + abs(x[i+1]*0.001)*v10[i+1])*(abs(abs(x[i+1]*0.001)-abs(x[i]*0.001))))
+# q10 = 2*math.pi*q10*rho
+# print(q10)
+#
+#
 # # 20 mm ----------------------------------------------------------------------------------------------------------------------------------------------------------
 # with open('20 mm.txt', 'r') as data20:
 #     p20 = [float(x)*pk+p0 for x in data20.read().split('\n')]
@@ -154,27 +154,14 @@ q10 = 2*math.pi*q10*rho
 # print(q70)
 #
 
-q = [q00, q10]
-s=[]
-for i in range(99):
-    if v00[i]-v00[i+1]!=0:
-        s.append(abs(v00[i]-v00[i+1]))
-print(min(s))
-
-s10=[]
-for i in range(99):
-    if v10[i]-v10[i+1] != 0 and v10[i]<5:
-        s10.append(abs(v10[i]-v10[i+1]))
-print(min(s10))
-
-
+q = [q00, q10, q20, q30, q40, q50, q60, q70]
 
 # строим график
 def cm_to_inch(value):
     return value/2.54
 fig, ax = plt.subplots(figsize=(cm_to_inch(20),cm_to_inch(15)))
 ax.plot(x, v00, label='Q(00 мм) = ' + str(round(q00*1000, 2)) + '(г/с)')
-ax.plot(x, v10, label='Q(10 мм) = ' + str(round(q10*1000, 2)) + '(г/с)')
+# ax.plot(x, v10, label='Q(10 мм) = ' + str(round(q10*1000, 2)) + '(г/с)')
 # ax.plot(x, v20, label='Q(20 мм) = ' + str(round(q20*1000, 2)) + '(г/с)')
 # ax.plot(x, v30, label='Q(30 мм) = ' + str(round(q30*1000, 2)) + '(г/с)')
 # ax.plot(x, v40, label='Q(40 мм) = ' + str(round(q40*1000, 2)) + '(г/с)')
