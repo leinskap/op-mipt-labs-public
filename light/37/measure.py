@@ -4,6 +4,8 @@ import numpy as np
 
 photos = ['calibration.png', 'blue.png', 'green.png', 'red.png', 'white.png', 'yellow.png']
 
+
+# получение данных
 rgb, I0 = j.read_image(photos[0], 'graph1.png', 'ртутная лампа', 'белый лист')
 I1 = j.read_image(photos[1], 'graph2.png', 'лампа накаливания', 'синий лист')[-1]
 I2 = j.read_image(photos[2], 'graph3.png', 'лампа накаливания', 'зеленый лист')[-1]
@@ -24,13 +26,15 @@ blue = [i[2] for i in rgb]
 i_green = green.index(max(green))
 i_blue = blue.index(max(blue))
 
-
-a = (546.074 - 435.83)/(i_green - i_blue)
-b = 546.074 - a*i_green
+# калибровка
+# a = (546.074 - 435.83)/(i_green - i_blue)
+# b = 546.074 - a*i_green
 
 a = 0.823
 b = 369.19
 
+
+# построение графиков
 x = np.linspace(0, len(I4), len(I4))
 x = [i * a + b for i in x]
 plt.cla()
@@ -55,8 +59,8 @@ plt.plot(x, I5, color='yellow', label='yellow')
 
 plt.legend()
 plt.title('Отражённая интенсивность излучения лампы накаливания')
-plt.ylabel('яркость')
-plt.xlabel('длина волны, нм')
+plt.ylabel('Яркость')
+plt.xlabel('Длина волны, нм')
 plt.savefig('I.png')
 
 # A1=[]
@@ -89,6 +93,9 @@ plt.savefig('I.png')
 #         A5.append(0)
 #     else:
 #         A5.append(I5[i] / I4[i])
+
+
+# расчёт альбедо
 A1 = [I1[i] / I4[i] for i in range(len(I1))]
 A2 = [I2[i] / I4[i] for i in range(len(I1))]
 A3 = [I3[i] / I4[i] for i in range(len(I1))]
@@ -96,6 +103,9 @@ A4 = [I4[i] / I4[i] for i in range(len(I1))]
 A5 = [I5[i] / I4[i] for i in range(len(I1))]
 # for i in range (len(A5)):
 #     print(i, ' ', A5[i])
+
+
+# построение графиков
 plt.cla()
 plt.clf()
 ax = plt.axes()
@@ -113,6 +123,6 @@ plt.plot(x, A5, color='yellow', label='yellow')
 
 plt.legend()
 plt.title('Зависимость альбедо поверхностей от длины волны падающего света')
-plt.ylabel('альбедо')
-plt.xlabel('длина волны, нм')
+plt.ylabel('Альбедо')
+plt.xlabel('Алина волны, нм')
 plt.savefig('A.png')

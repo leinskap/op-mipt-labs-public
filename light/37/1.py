@@ -1,11 +1,17 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+
+# получение коэффициентов калибровки
 x = [81, 215]
 y = [435.83, 546.074]
 coefs = np.polyfit(x,y,1)
 p = np.poly1d(coefs)
 print(coefs)
+
+
+
+# построение графика
 fig, ax = plt.subplots()
 ax.scatter(x,y, label = '$\lambda$ = ' + str(round(coefs[0],3)) + '$\cdot$ n' + ' + ' + str(round(coefs[1],3)) + ' нм')
 ax.plot(x,p(x), c='red')

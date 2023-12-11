@@ -21,6 +21,5 @@ camera.capture('MVVK_white_37.jpg')  # Take a picture - и сохранение 
 
 camera.stop_preview() #- остановка предварительного просмотра
 
-#- задание контраста снимка
 
 camera.close() #-   метод для освобождения ресурсов камеры

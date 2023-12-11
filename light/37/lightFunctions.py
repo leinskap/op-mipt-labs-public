@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import imageio
 from cycler import cycler
 
-
+# функция для получения графика интенсивности отражённого излучения
 def read_image(photoName, graph_name, lamp, surface):
     photo = imageio.imread(photoName)
     background = photo[500:693, 670:1063, 0:3]
