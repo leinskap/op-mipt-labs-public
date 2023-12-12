@@ -3,8 +3,8 @@ import numpy as np
 
 
 # получение коэффициентов калибровки
-x = [81, 215]
-y = [435.83, 546.074]
+x = [152, 265]
+y = [435.83, 576.96]
 coefs = np.polyfit(x,y,1)
 p = np.poly1d(coefs)
 print(coefs)

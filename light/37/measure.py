@@ -21,17 +21,18 @@ I5 = I5[:352]
 # b = [i[2] for i in rgb]
 # r_max, b_max = max(r), max(b)
 # i_r, i_b = r.index(r_max), b.index(b_max)
-green = [i[1] for i in rgb]
-blue = [i[2] for i in rgb]
-i_green = green.index(max(green))
-i_blue = blue.index(max(blue))
+
+luma = 0.2989 * rgb[:, 0] + 0.5866 * rgb[:, 1] + 0.1144 * rgb[:, 2]
+print(list(luma).index(max(luma[:180])))
+print(list(luma).index(max(luma[250:])))
+
 
 # калибровка
 # a = (546.074 - 435.83)/(i_green - i_blue)
 # b = 546.074 - a*i_green
 
-a = 0.823
-b = 369.19
+a = 1.249
+b = 245.991
 
 
 # построение графиков
